@@ -72,7 +72,8 @@ RUN export > all_env_vars.sh
 
 ENV KOBO_SERVER_HOST="localhost"
 ENV KOBO_RENDERER_HOST="localhost/form-renderer"
+ENV DJANGO_DEBUG="False"
 
 #CMD ["./uwsgi", "bahis.ini"]
 #we need 10s delay to give databases time to initialise
-CMD sleep 10 && ./celeryd_bahis start && ./uwsgi bahis.ini
+CMD sleep 10 && python /${SRC_DIR}/kobocat/manage.py collectstatic --noinput && ./celeryd_bahis start && ./uwsgi bahis.ini
