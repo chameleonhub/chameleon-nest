@@ -38,7 +38,7 @@ services:
     ports:
       - "83:80" #we are using mitmproxy to monitor traffic on port 80
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/:/etc/nginx/conf.d
       - ../../bahis-serve/:/src_bahis
 
 volumes:
