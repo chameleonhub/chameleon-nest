@@ -1,0 +1,5 @@
+ENKETO_REDIS_MAIN_HOST=redis-main.kobo.private
+ENKETO_REDIS_CACHE_HOST=redis-cache.kobo.private
+ENKETO_LINKED_FORM_AND_DATA_SERVER_SERVER_URL=kf.kobo.private
+ENKETO_LINKED_FORM_AND_DATA_SERVER_API_KEY=abc
+ENKETO_SUPPORT_EMAIL=support@kobo.private

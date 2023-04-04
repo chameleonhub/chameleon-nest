@@ -1,5 +1,4 @@
-.DS_Store
-secrets
-bahis_minimal.sql
-src_bahis
-deployment/pgdb/*sql
+.idea/
+/kobo-docker/.vols/
+/kobo-docker/backups/
+/kobo-docker/log/

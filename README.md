@@ -28,28 +28,10 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 Or follow [this](https://docs.docker.com/engine/install/ubuntu/) tutorial.
 
-## BAHIS
+## BAHIS3
 
-1. First you need to clone bahis-serve in the same directory as this repository
-
-```bash
-cd ..
-git clone https://github.com/road86/bahis-serve
-```
-
-2. Then spin up the infrastructure
 
 ```bash
-cd bahis-infra/deployment/
-sudo docker-compose build
-sudo docker-compose up &
+docker-compose -f docker-compose.backend.primary.yml -f docker-compose.backend.primary.override.yml up -d
+docker-compose -f docker-compose.frontend.yml -f docker-compose.frontend.override.yml up -d 
 ```
-
-3. To initialise the database for the first time request an initial db from one of the development team and run
-
-```bash
-cd pgdb
-whichdb=<path-to-your-db>.sql ./resetdb.sh
-```
-
-4. Access BAHIS at [http://localhost:83]
