@@ -35,13 +35,13 @@ From the root of this repository.
 ### UP
 
 ```bash
-docker-compose -f kobo-docker/docker-compose.backend.primary.yml -f kobo-docker/docker-compose.backend.primary.override.yml up -d && docker-compose -f kobo-docker/docker-compose.frontend.yml -f docker-compose.frontend.dev.yml up -d
+docker-compose -f kobo-docker/docker-compose.backend.primary.yml -f docker-compose.backend.primary.override.yml up -d && docker-compose -f kobo-docker/docker-compose.frontend.yml -f docker-compose.frontend.override.yml up -d
 ```
 
 ### DOWN
 
 ```bash
-docker-compose -f kobo-docker/docker-compose.backend.primary.yml -f kobo-docker/docker-compose.backend.primary.override.yml down && docker-compose -f kobo-docker/docker-compose.frontend.yml -f docker-compose.frontend.dev.yml down
+docker-compose -f kobo-docker/docker-compose.backend.primary.yml -f docker-compose.backend.primary.override.yml down && docker-compose -f kobo-docker/docker-compose.frontend.yml -f docker-compose.frontend.override.yml down
 ```
 
 ### Mega purge of local machine
@@ -49,7 +49,6 @@ docker-compose -f kobo-docker/docker-compose.backend.primary.yml -f kobo-docker/
 This is like the big red button - so only use it locally and never on the server.
 
 ```bash
-docker system prune --volumes --all --force
-docker volume prune --force --filter all=1
+docker system prune --volumes --all --force && docker volume prune --force --filter all=1
 
 ````

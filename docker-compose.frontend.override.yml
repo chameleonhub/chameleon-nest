@@ -69,7 +69,5 @@ services:
 
 networks:
   kobo-be-network:
-    external:
-      # name: <prefix>_kobo-be-network`, where `prefix` is usually the parent
-      # folder name
-      name: kobodocker_kobo-be-network
+    name: kobo-docker_kobo-be-network
+    external: true
