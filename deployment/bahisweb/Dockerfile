@@ -76,4 +76,4 @@ ENV DJANGO_DEBUG="False"
 
 #CMD ["./uwsgi", "bahis.ini"]
 #we need 10s delay to give databases time to initialise
-CMD sleep 10 && python /${SRC_DIR}/kobocat/manage.py collectstatic --noinput && ./celeryd_bahis start && ./uwsgi bahis.ini
+CMD sleep 10 && python /${SRC_DIR}/kobocat/manage.py collectstatic --noinput && python /${SRC_DIR}/kobocat/manage.py migrate && ./celeryd_bahis start && ./uwsgi bahis.ini
