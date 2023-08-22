@@ -30,7 +30,7 @@ services:
     volumes:
      - ../../bahis-dash/:/bahis-dash
      - ../../bahis-data/:/bahis-data
-     - ../../bahis-backup/:/bahis-backup # NOTE: this is to mount a backup directory 
+     - /home/bahis/backups/:/bahis-backup # NOTE: this is to mount a backup directory 
     container_name: dash-data-container
     restart: always
 
