@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+ipython = "*"
+shapely = "*"
+pandas = "*"
+numpy = "*"
+sqlalchemy = "*"
+psycopg2-binary = "*"
+loguru = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"

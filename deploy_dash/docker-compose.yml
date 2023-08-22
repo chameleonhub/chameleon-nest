@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  dash-db:
+    # image: postgis/postgis
+    # the following build with postgis for arm
+    image: ghcr.io/baosystems/postgis:13-3.2
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./dash-db/:/docker-entrypoint-initdb.d/
+    hostname:
+      dash-db
+    expose:
+      - 5432
+    command: ["postgres", "-c", "log_statement=all", "-c", "log_connections=on"]
+
+  dash-app:
+    build: ./dash-app
+    volumes:
+     - ../../bahis-dash/:/bahis-dash
+    container_name: dash-app-container
+    restart: always
+    expose:
+      - 5000
+
+  dash-data:
+    build: ./dash-data
+    volumes:
+     - ../../bahis-dash/:/bahis-dash
+     - ../../bahis-data/:/bahis-data
+     - ../../bahis-backup/:/bahis-backup # NOTE: this is to mount a backup directory 
+    container_name: dash-data-container
+    restart: always
+
+  dash-nginx:
+    build: ./dash-nginx
+    container_name: dash-nginx
+    restart: always
+    ports:
+      - "80:80"
+
+volumes:
+  db:
+    driver: local

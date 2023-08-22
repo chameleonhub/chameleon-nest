@@ -3,3 +3,5 @@ secrets
 bahis_minimal.sql
 src_bahis
 deployment/pgdb/*sql
+.env
+secret-init_user.sql
