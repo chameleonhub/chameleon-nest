@@ -6,8 +6,19 @@ git@github.com:road86/bahis-infra.git
 git@github.com:road86/bahis-data.git
 git@github.com:road86/bahis-dash.git
 ```
-2. Make sure that `bahis_creds_file.cnf` is in `bahis-data` directory.
-3. Make sure `secret-init_user.sql` is in `dash-db` directory to create a user for bahis data to connect to our dashboard/backup database
+2. Make sure that `bahis_creds_file.cnf` is in `bahis-data` directory. This file is used by sqlalchemy to access database with BAHIS backup and looks like this:
+```
+[bahis_credentials]
+database=coredb
+user=kobo
+port=5432
+password=XXXXXXXXX
+host=dash-db
+```
+3. Make sure `secret-init_user.sql` is in `dash-db` directory to create a user for bahis data to connect to our dashboard/backup database. It is just a one-liner:
+```
+CREATE USER kobo WITH PASSWORD 'XXXXXXXXX';
+```
 3. Make sure backups of the production databsed are written to `/home/bahis/backups` 
 4. Make sure to put in `bahis-data/input` our side-loaded files from oldbahis and corrected disease list:
 ```
