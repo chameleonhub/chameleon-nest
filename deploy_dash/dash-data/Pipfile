@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 ipython = "*"
 shapely = "*"
-pandas = "1.5.3"
+pandas = "==1.5.3"
 numpy = "*"
 sqlalchemy = "*"
 psycopg2-binary = "*"
