@@ -1,11 +1,11 @@
 # How to deploy the BAHIS dashboard
 
 1. Clone the infrastructure repository with `git clone git@github.com:road86/bahis-infra.git` or `git repo clone road86/bahis-infra`
-2. Clone the submodules (`bahis-dash` and `bahis-data`) with `git submodule update --init --recursive`
-3. Make sure the `output` directory in `bahis-data` is full (or run the script in the container to fill it).
-4. Make sure that `bahis_creds_file.cnf` is in `bahis-data` directory.
+2. Clone the submodules (`bahis-dash` and `bahis-data`) with `git submodule update --init --recursive` (`cd` into the repo first)
+3. Make sure that `bahis_creds_file.cnf` is in `bahis-data` directory.
+4. Make sure the `output` directory in `bahis-data` is full (or run the script in the container to fill it).
 5. Make sure `secret-init_user.sql` is in `pgdb` directory to create a user for bahis data to connect to our dashboard/backup database. It is just a one-liner `CREATE USER kobo WITH PASSWORD 'XXXXXXXXX';`
-6. Make sure backups of the production databsed are written to `/home/bahis/backups`
+6. Make sure backups of the production databsed are written to `bahis-data/input`
 7. Make sure to put in `bahis-data/input` our side-loaded files from oldbahis and corrected disease list: `Diseaselist.csv`, `oldbahis_fao_species[timestamp].csv`, `oldbahis_forms_data[timestamp].csv`
 8. `docker-compose up -d`
 
