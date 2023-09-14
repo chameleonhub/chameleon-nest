@@ -10,8 +10,6 @@ services:
       - ./pgdb/:/docker-entrypoint-initdb.d/
     hostname:
       pgdb
-    expose:
-      - 5432
     networks:
       - network
     command: ["postgres", "-c", "log_statement=all", "-c", "log_connections=on"]
@@ -21,8 +19,6 @@ services:
       context: ./bahis-dash/
     container_name: dashboard
     restart: always
-    ports:
-      - 5000:80
     volumes:
       - ./bahis-data/output/:/home/app/exported_data
     networks:
@@ -43,7 +39,7 @@ services:
     container_name: nginx
     restart: always
     ports:
-      - 80:80
+      - 2000:80
     networks:
       - network
 
