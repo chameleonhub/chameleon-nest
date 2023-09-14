@@ -1,0 +1,52 @@
+version: '3.7'
+
+services:
+  pgdb:
+    image: postgis/postgis:15-3.4-alpine
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./pgdb/:/docker-entrypoint-initdb.d/
+    hostname:
+      pgdb
+    networks:
+      - network
+    command: ["postgres", "-c", "log_statement=all", "-c", "log_connections=on"]
+
+  dashboard:
+    build: 
+      context: ./bahis-dash/
+    container_name: dashboard
+    restart: always
+    volumes:
+      - ./bahis-data/output/:/home/app/exported_data
+    networks:
+      - network
+
+  data:
+    build:
+      context: ./bahis-data/
+    container_name: data
+    restart: always
+    volumes:
+     - ./bahis-data/output/:/home/app/output
+    networks:
+      - network
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - 2000:80
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
+
+volumes:
+  db:
+    driver: local

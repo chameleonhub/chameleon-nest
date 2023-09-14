@@ -1,0 +1,6 @@
+[submodule "dash/bahis-dash"]
+	path = dash/bahis-dash
+	url = git@github.com:road86/bahis-dash.git
+[submodule "dash/bahis-data"]
+	path = dash/bahis-data
+	url = git@github.com:road86/bahis-data.git
