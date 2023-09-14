@@ -9,6 +9,12 @@
 7. Make sure to put in `bahis-data/input` our side-loaded files from oldbahis and corrected disease list: `Diseaselist.csv`, `oldbahis_fao_species[timestamp].csv`, `oldbahis_forms_data[timestamp].csv`
 8. `docker-compose up -d`
 
+## To update a module (e.g. bahis-dash or bahis-data)
+
+1. `docker compose down -v` - this stops the current deployment, takes the containers down _and_ should take volumes down too (not always needed but probably good pratice)
+2. `git submodule update --recursive` - this updates all submodules to the latest commit on their current branch (use `git submodule foreach "git branch --show-current"` to see submodule branches)
+3. `docker-compose up -d` - this starts the deployment again
+
 ## How it works
 
 `bahis-data` has a cron script that runs a pandas pipeline that resets datbase from backup and pulls most recent data to csv files (including bahistot/oldbahis that are manually put in `input` directory). Those files written to `output` are then mounted to bahis-dash directory `exported_data` by docker-compose.
