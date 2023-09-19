@@ -3,8 +3,8 @@
 ```bash
 git clone https://github.com/road86/bahis-infra
 ```
-2. Update submodule with 
-3. ```bash
+2. Update submodule with  
+```bash
    cd bahis-infra
    git submodule update --init --recursive
    ```
