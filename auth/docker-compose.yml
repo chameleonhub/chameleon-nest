@@ -3,9 +3,11 @@ services:
   oidc:
     restart: always
     build:
-      context: ../../bahis-oidc/
+      context: ./bahis-oidc/
     volumes:
-      - ../../bahis-oidc/:/bahis/oidc/
+      - ./bahis-oidc/:/bahis/oidc/
+    networks:
+      - auth-network
   nginx:
     restart: always
     image: nginx:latest
@@ -13,4 +15,9 @@ services:
       - "3000:80"
     volumes:
       - ./nginx/:/etc/nginx/conf.d
-      - ../../bahis-oidc/:/bahis/oidc/
+      - ./bahis-oidc/:/bahis/oidc/
+    networks:
+      - auth-network
+networks:
+  auth-network:
+    driver: bridge
