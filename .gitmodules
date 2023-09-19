@@ -4,3 +4,6 @@
 [submodule "dash/bahis-data"]
 	path = dash/bahis-data
 	url = git@github.com:road86/bahis-data.git
+[submodule "auth/bahis-oidc"]
+	path = auth/bahis-oidc
+	url = git@github.com:road86/bahis-oidc.git

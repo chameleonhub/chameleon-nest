@@ -6,3 +6,4 @@ deployment/pgdb/*sql
 .env
 secret-init_user.sql
 bahis_creds_file.cnf
+.idea/
