@@ -8,6 +8,7 @@ services:
       - ./bahis-oidc/:/bahis/oidc/
     networks:
       - auth-network
+      - deployment_default
   nginx:
     restart: always
     image: nginx:latest
@@ -21,3 +22,5 @@ services:
 networks:
   auth-network:
     driver: bridge
+  deployment_default:
+    external: true

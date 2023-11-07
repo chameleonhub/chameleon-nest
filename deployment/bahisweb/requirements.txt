@@ -78,6 +78,7 @@ pytz==2016.10
 raven==6.1.0
 recaptcha-client==1.0.6
 requests==2.4.1
+requests-oauthlib==0.8.0
 savReaderWriter==3.4.2
 simplejson==2.6.2
 six==1.11.0

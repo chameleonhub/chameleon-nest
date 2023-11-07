@@ -1,6 +1,7 @@
 version: '3.3'
 services:
   pgdb:
+    restart: always
     # image: postgis/postgis
     # the following build with postgis for arm
     image: ghcr.io/baosystems/postgis:13-3.2
@@ -17,14 +18,17 @@ services:
     command: ["postgres", "-c", "log_statement=all", "-c", "log_connections=on"]
 
   rabbitmq:
+    restart: always
     image: rabbitmq:latest
 
   mongodb:
+    restart: always
     image: mongo:4.4
     ports:
       - "97:27017"
 
   bahisweb:
+    restart: always
     build: ./bahisweb
     volumes:
      - ../../bahis-serve/:/src_bahis
