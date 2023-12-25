@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  oidc:
+    restart: always
+    build:
+      context: ./bahis-oidc/
+    volumes:
+      - ./bahis-oidc/:/bahis/oidc/
+    networks:
+      - auth-network
+      - deployment_default
+  nginx:
+    restart: always
+    image: nginx:latest
+    ports:
+      - "3000:80"
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d
+      - ./bahis-oidc/:/bahis/oidc/
+    networks:
+      - auth-network
+networks:
+  auth-network:
+    driver: bridge
+  deployment_default:
+    external: true
