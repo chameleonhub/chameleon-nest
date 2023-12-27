@@ -10,3 +10,6 @@
 [submodule "auth/bahis-oidc"]
 	path = auth/bahis-oidc
 	url = git@github.com:road86/bahis-oidc.git
+[submodule "management/bahis-management"]
+	path = management/bahis-management
+	url = git@github.com:road86/bahis-management.git
