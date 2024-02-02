@@ -6,7 +6,7 @@ BAHIS project infrastrucutre repository
 
 To install docker and other dependencies on a debian/ubuntu box:
 
-```basg
+```sh
 sudo apt-get update
 
  sudo apt-get install \
@@ -30,26 +30,25 @@ Or follow [this](https://docs.docker.com/engine/install/ubuntu/) tutorial.
 
 ## BAHIS
 
-1. First you need to clone bahis-serve in the same directory as this repository
+1. First you need to clone all the submodules
 
-```bash
-cd ..
-git clone https://github.com/road86/bahis-serve
+```sh
+git submodule update --init --recursive
 ```
 
-2. Then spin up the infrastructure
+2. Then spin up the infrastructure you're interested in, e.g.
 
-```bash
-cd bahis-infra/deployment/
+```sh
+cd bahis-infra/serve/
 sudo docker-compose build
-sudo docker-compose up &
+sudo docker-compose up -d
 ```
 
 3. To initialise the database for the first time request an initial db from one of the development team and run
 
-```bash
+```sh
 cd pgdb
 whichdb=<path-to-your-db>.sql ./resetdb.sh
 ```
 
-4. Access BAHIS at [http://localhost:83]
+4. Access BAHIS at e.g. [bahis-serve](http://localhost:83)

@@ -9,12 +9,10 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
       - db:/var/lib/postgresql/data
-      # - ./pgdb/init.sql:/docker-entrypoint-initdb.d/11_create_users.sql
-      # - ./pgdb/tmp.sql:/docker-entrypoint-initdb.d/12_create_tables.sql
     hostname:
       pgdb
     ports:
-      - "99:5432"
+      - 5432:5432
     command: ["postgres", "-c", "log_statement=all", "-c", "log_connections=on"]
 
   rabbitmq:
@@ -24,26 +22,24 @@ services:
   mongodb:
     restart: always
     image: mongo:4.4
-    ports:
-      - "97:27017"
 
   bahisweb:
     restart: always
     build: ./bahisweb
     volumes:
-     - ../../bahis-serve/:/src_bahis
+     - ./bahis-serve/:/src_bahis
     depends_on:
       - pgdb
       - mongodb
 
   nginx:
     restart: always
-    image: nginx:latest # TODO move to alpine for smaller size?
+    image: nginx:latest
     ports:
-      - "83:80" #we are using mitmproxy to monitor traffic on port 80
+      - 80:80
     volumes:
       - ./nginx/:/etc/nginx/conf.d
-      - ../../bahis-serve/:/src_bahis
+      - ./bahis-serve/:/src_bahis
 
 volumes:
   db:
