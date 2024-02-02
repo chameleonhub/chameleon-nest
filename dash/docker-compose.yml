@@ -24,6 +24,16 @@ services:
     networks:
       - network
 
+  dashboard-ulo:
+    build: 
+      context: ./bahis-dash-ulo/
+    container_name: dashboard-ulo
+    restart: always
+    volumes:
+      - ./bahis-data/output/:/home/app/exported_data
+    networks:
+      - network
+
   data:
     build:
       context: ./bahis-data/
