@@ -51,6 +51,7 @@ services:
     restart: always
     ports:
       - 2000:80
+      - 2001:81
     networks:
       - network
 
