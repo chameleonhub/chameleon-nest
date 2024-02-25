@@ -8,8 +8,9 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
       - ./pgdb/:/docker-entrypoint-initdb.d/
+    container_name: dashdb
     hostname:
-      pgdb
+      dashdb
     networks:
       - network
     command: ["postgres", "-c", "log_statement=all", "-c", "log_connections=on"]
@@ -37,21 +38,21 @@ services:
   data:
     build:
       context: ./bahis-data/
-    container_name: data
+    container_name: dash-data
     restart: always
     volumes:
      - ./bahis-data/output/:/home/app/output
-     - ./bahis-data/input/:/home/app/input
+     - /home/bahis/backups/:/home/app/input
     networks:
       - network
 
   nginx:
     build: ./nginx
-    container_name: nginx
+    container_name: dash-nginx
     restart: always
     ports:
-      - 2000:80
-      - 2001:81
+      - 2020:80
+      - 2021:81
     networks:
       - network
 
