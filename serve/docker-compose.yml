@@ -9,6 +9,7 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
       - db:/var/lib/postgresql/data
+    container_name: bahisdb
     hostname:
       pgdb
     ports:
@@ -20,23 +21,26 @@ services:
     image: rabbitmq:latest
 
   mongodb:
+    container_name: mongodb
     restart: always
     image: mongo:4.4
 
   bahisweb:
     restart: always
+    container_name: bahisweb
     build: ./bahisweb
     volumes:
-     - ./bahis-serve/:/src_bahis
+      - ./bahis-serve/:/src_bahis
     depends_on:
       - pgdb
       - mongodb
 
   nginx:
     restart: always
+    container_name: serve-nginx
     image: nginx:latest
     ports:
-      - 80:80
+      - 83:80
     volumes:
       - ./nginx/:/etc/nginx/conf.d
       - ./bahis-serve/:/src_bahis
