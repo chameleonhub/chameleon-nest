@@ -37,7 +37,7 @@ services:
     environment:
       - TZ=Asia/Dhaka
     volumes:
-     - ./bahis-serve/:/src_bahis
+      - ./bahis-serve/:/src_bahis
     depends_on:
       - pgdb
       - mongodb
