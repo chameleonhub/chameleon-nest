@@ -2,6 +2,9 @@ version: '3.8'
 services:
   oidc:
     restart: always
+    container_name: oidc
+    environment:
+      - TZ=Asia/Dhaka
     build:
       context: ./bahis-oidc/
     volumes:
@@ -11,6 +14,9 @@ services:
       - serve_net
   nginx:
     restart: always
+    container_name: oidc-nginx
+    environment:
+      - TZ=Asia/Dhaka
     image: nginx:latest
     ports:
       - "3000:80"
