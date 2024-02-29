@@ -7,8 +7,8 @@ services:
     volumes:
       - ./bahis-oidc/:/bahis/oidc/
     networks:
-      - auth-network
-      - deployment_default
+      - auth_net
+      - serve_net
   nginx:
     restart: always
     image: nginx:latest
@@ -18,9 +18,9 @@ services:
       - ./nginx/:/etc/nginx/conf.d
       - ./bahis-oidc/:/bahis/oidc/
     networks:
-      - auth-network
+      - auth_net
 networks:
-  auth-network:
+  auth_net:
     driver: bridge
-  deployment_default:
+  serve_net:
     external: true

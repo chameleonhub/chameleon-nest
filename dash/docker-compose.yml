@@ -13,7 +13,7 @@ services:
     hostname:
       dashdb
     networks:
-      - network
+      - dash_net
     command: ["postgres", "-c", "log_statement=all", "-c", "log_connections=on"]
 
   dashboard:
@@ -26,7 +26,7 @@ services:
     volumes:
       - ./bahis-data/output/:/home/app/exported_data
     networks:
-      - network
+      - dash_net
 
   dashboard-ulo:
     build: 
@@ -38,7 +38,7 @@ services:
     volumes:
       - ./bahis-data/output/:/home/app/exported_data
     networks:
-      - network
+      - dash_net
 
   data:
     build:
@@ -51,7 +51,7 @@ services:
      - ./bahis-data/output/:/home/app/output
      - /home/bahis/backups/:/home/app/input
     networks:
-      - network
+      - dash_net
 
   nginx:
     build: ./nginx
@@ -63,10 +63,10 @@ services:
       - 2020:80
       - 2021:81
     networks:
-      - network
+      - dash_net
 
 networks:
-  network:
+  dash_net:
     driver: bridge
 
 volumes:
