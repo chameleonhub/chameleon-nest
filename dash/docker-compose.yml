@@ -4,6 +4,7 @@ services:
   pgdb:
     image: postgis/postgis:15-3.4-alpine
     environment:
+      - TZ=Asia/Dhaka
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
       - db:/var/lib/postgresql/data
@@ -19,6 +20,8 @@ services:
     build: 
       context: ./bahis-dash/
     container_name: dashboard
+    environment:
+      - TZ=Asia/Dhaka
     restart: always
     volumes:
       - ./bahis-data/output/:/home/app/exported_data
@@ -29,6 +32,8 @@ services:
     build: 
       context: ./bahis-dash-ulo/
     container_name: dashboard-ulo
+    environment:
+      - TZ=Asia/Dhaka
     restart: always
     volumes:
       - ./bahis-data/output/:/home/app/exported_data
@@ -39,6 +44,8 @@ services:
     build:
       context: ./bahis-data/
     container_name: dash-data
+    environment:
+      - TZ=Asia/Dhaka
     restart: always
     volumes:
      - ./bahis-data/output/:/home/app/output
@@ -49,6 +56,8 @@ services:
   nginx:
     build: ./nginx
     container_name: dash-nginx
+    environment:
+      - TZ=Asia/Dhaka
     restart: always
     ports:
       - 2020:80
