@@ -67,6 +67,7 @@ services:
 
 networks:
   dash_net:
+    name: dash_net
     driver: bridge
 
 volumes:

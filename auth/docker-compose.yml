@@ -27,6 +27,7 @@ services:
       - auth_net
 networks:
   auth_net:
+    name: auth_net
     driver: bridge
   serve_net:
     external: true

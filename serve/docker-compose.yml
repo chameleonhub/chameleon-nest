@@ -71,4 +71,5 @@ volumes:
 
 networks:
   serve_net:
+    name: serve_net
     driver: bridge
