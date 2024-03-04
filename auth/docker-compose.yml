@@ -2,15 +2,21 @@ version: '3.8'
 services:
   oidc:
     restart: always
+    container_name: oidc
+    environment:
+      - TZ=Asia/Dhaka
     build:
       context: ./bahis-oidc/
     volumes:
       - ./bahis-oidc/:/bahis/oidc/
     networks:
-      - auth-network
-      - deployment_default
+      - auth_net
+      - serve_net
   nginx:
     restart: always
+    container_name: oidc-nginx
+    environment:
+      - TZ=Asia/Dhaka
     image: nginx:latest
     ports:
       - "3000:80"
@@ -18,9 +24,10 @@ services:
       - ./nginx/:/etc/nginx/conf.d
       - ./bahis-oidc/:/bahis/oidc/
     networks:
-      - auth-network
+      - auth_net
 networks:
-  auth-network:
+  auth_net:
+    name: auth_net
     driver: bridge
-  deployment_default:
+  serve_net:
     external: true

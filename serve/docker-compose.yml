@@ -6,42 +6,70 @@ services:
     # the following build with postgis for arm
     image: ghcr.io/baosystems/postgis:13-3.2
     environment:
+      - TZ=Asia/Dhaka
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
       - db:/var/lib/postgresql/data
+    container_name: bahisdb
     hostname:
       pgdb
     ports:
-      - 5432:5432
+      - 5444:5432
     command: ["postgres", "-c", "log_statement=all", "-c", "log_connections=on"]
+    networks:
+      - serve_net
 
   rabbitmq:
     restart: always
     image: rabbitmq:latest
+    environment:
+      - TZ=Asia/Dhaka
+    networks:
+      - serve_net
 
   mongodb:
+    container_name: mongodb
     restart: always
     image: mongo:4.4
+    environment:
+      - TZ=Asia/Dhaka
+    networks:
+      - serve_net
 
   bahisweb:
     restart: always
+    container_name: bahisweb
     build: ./bahisweb
+    environment:
+      - TZ=Asia/Dhaka
     volumes:
-     - ./bahis-serve/:/src_bahis
+      - ./bahis-serve/:/src_bahis
     depends_on:
       - pgdb
       - mongodb
+    networks:
+      - serve_net
 
   nginx:
     restart: always
+    container_name: serve-nginx
     image: nginx:latest
+    environment:
+      - TZ=Asia/Dhaka
     ports:
-      - 80:80
+      - 83:80
     volumes:
       - ./nginx/:/etc/nginx/conf.d
       - ./bahis-serve/:/src_bahis
+    networks:
+      - serve_net
 
 volumes:
   db:
     name: deployment_db
     driver: local
+
+networks:
+  serve_net:
+    name: serve_net
+    driver: bridge
