@@ -10,6 +10,7 @@ services:
       context: ./bahis-management/
     image: bahis_management_production_django
     volumes:
+      - ./bahis-management/bahis_management:/app/bahis_management
       - production_django_media:/app/bahis_management/media
     depends_on:
       - postgres
@@ -24,7 +25,7 @@ services:
     restart: always
     image: postgres:15-alpine3.18
     ports:
-      - 5432:5432
+      - 5433:5432
     env_file:
       - ./bahis-management/.env
     environment:
