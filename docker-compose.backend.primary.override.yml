@@ -15,7 +15,7 @@ services:
     networks:
       kobo-be-network:
         aliases:
-          - postgres.kobo.private
+          - postgres.sharful.com
 
   mongo:
     # Uncomment `ports` section if you want to expose ports (e.g. use as separated servers)
@@ -27,7 +27,7 @@ services:
     networks:
       kobo-be-network:
         aliases:
-          - mongo.kobo.private
+          - mongo.sharful.com
 
   # Comment out section (`redis_main` and `redis_cache`) below if you want to
   # start redis containers from the secondary back-end server
@@ -44,7 +44,7 @@ services:
     networks:
       kobo-be-network:
         aliases:
-          - redis-main.kobo.private
+          - redis-main.sharful.com
 
   redis_cache:
     extends:
@@ -59,7 +59,7 @@ services:
     networks:
       kobo-be-network:
         aliases:
-          - redis-cache.kobo.private
+          - redis-cache.sharful.com
 
 # Comment out section below if you want to expose ports
 networks:

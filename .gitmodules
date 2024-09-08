@@ -13,3 +13,6 @@
 [submodule "management/bahis-management"]
 	path = management/bahis-management
 	url = git@github.com:road86/bahis-management.git
+[submodule "dash/bahis-dash-ulo"]
+	path = dash/bahis-dash-ulo
+	url = git@github.com:road86/bahis-dash-ulo.git

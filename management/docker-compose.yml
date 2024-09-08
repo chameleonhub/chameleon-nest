@@ -6,6 +6,7 @@ volumes:
 
 services:
   management:
+    restart: always
     build:
       context: ./bahis-management/
     image: bahis_management_production_django
