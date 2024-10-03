@@ -5,7 +5,7 @@ DEBUG_TOOLBAR=True
 
 ENKETO_VERSION=Express
 KPI_PREFIX=/
-KPI_BROKER_URL=redis://:kobo@redis-main.sharful.com:6379/1
+KPI_BROKER_URL=redis://:kobo@redis-main.domain.name:6379/1
 
 #DJANGO_SETTINGS_MODULE=kobo.settings.dev
 DJANGO_SETTINGS_MODULE=kobo.settings.bahis.dev
