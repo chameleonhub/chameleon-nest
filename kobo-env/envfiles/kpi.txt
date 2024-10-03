@@ -1,13 +1,14 @@
 KPI_DJANGO_DEBUG=True
 TEMPLATE_DEBUG=True
 USE_X_FORWARDED_HOST=False
-
+DEBUG_TOOLBAR=True
 
 ENKETO_VERSION=Express
 KPI_PREFIX=/
-KPI_BROKER_URL=redis://:kobo@redis-main.kobo.private:6379/1
+KPI_BROKER_URL=redis://:kobo@redis-main.domain.name:6379/1
 
-DJANGO_SETTINGS_MODULE=kobo.settings.dev
+#DJANGO_SETTINGS_MODULE=kobo.settings.dev
+DJANGO_SETTINGS_MODULE=kobo.settings.bahis.dev
 
 DJANGO_LANGUAGE_CODES=en fr es ar zh-hans hi ku
 #DKOBO_PREFIX=False
@@ -17,7 +18,6 @@ DJANGO_LANGUAGE_CODES=en fr es ar zh-hans hi ku
 #SYNC_KOBOCAT_XFORMS_PERIOD_MINUTES=30
 #KPI_UWSGI_PROCESS_COUNT=2
 #KOBO_SUPPORT_URL=http://support.kobotoolbox.org/
-
 
 # Dev: One or more mappings from PyDev remote debugging machine file paths to `kpi` container file
 #   paths (see https://github.com/kobotoolbox/kpi/blob/master/docker/setup_pydev.bash).

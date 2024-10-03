@@ -10,12 +10,12 @@ services:
     # Before uncommenting, be sure you have a firewall configured to prevent these ports
     # from being publicly accessible
     ports:
-     - 5434:5432
+      - "5434:5432"
     # Comment out `networks` section below if you want to expose ports
     networks:
       kobo-be-network:
         aliases:
-          - postgres.kobo.private
+          - postgres.sharful.com
 
   mongo:
     # Uncomment `ports` section if you want to expose ports (e.g. use as separated servers)
@@ -27,7 +27,7 @@ services:
     networks:
       kobo-be-network:
         aliases:
-          - mongo.kobo.private
+          - mongo.sharful.com
 
   # Comment out section (`redis_main` and `redis_cache`) below if you want to
   # start redis containers from the secondary back-end server
@@ -38,13 +38,13 @@ services:
     # Uncomment `ports` section if you want to expose ports (e.g. use as separated servers)
     # Before uncommenting, be sure you have a firewall configured to prevent these ports
     # from being publicly accessible
-    #ports:
-    #  - 6379:6379
+    # ports:
+    #   - 6379:6379
     # Comment out `networks` section below if you want to expose ports
     networks:
       kobo-be-network:
         aliases:
-          - redis-main.kobo.private
+          - redis-main.sharful.com
 
   redis_cache:
     extends:
@@ -53,12 +53,13 @@ services:
     # Uncomment `ports` section if you want to expose ports (e.g. use as separated servers)
     # Before uncommenting, be sure you have a firewall configured to prevent these ports
     # from being publicly accessible
-    #ports:
-    #  - 6380:6380
+    # ports:
+    #   - 6380:6380
     # Comment out `networks` section below if you want to expose ports
     networks:
       kobo-be-network:
         aliases:
+          - redis-cache.sharful.com
           - redis-cache.kobo.private
 
 # Comment out section below if you want to expose ports

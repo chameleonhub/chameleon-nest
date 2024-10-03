@@ -1,13 +1,13 @@
 {
     "app name": "Enketo Express for KoBo Toolbox",
-    "encryption key": "abc",
+    "encryption key": "key",
     "google": {
         "analytics": {
             "domain": "",
             "ua": ""
         }
     },
-    "less secure encryption key": "abc",
+    "less secure encryption key": "key",
     "linked form and data server": {
         "api key": "abc",
         "name": "KoBo Toolbox",
@@ -46,13 +46,13 @@
     "payload limit": "1mb",
     "redis": {
         "cache": {
-            "host": "redis-cache.kobo.private",
-            "password": "kobo",
+            "host": "redis-cache.sharful.com",
+            "password": "pass",
             "port": "6380"
         },
         "main": {
-            "host": "redis-main.kobo.private",
-            "password": "kobo",
+            "host": "redis-main.sharful.com",
+            "password": "pass",
             "port": "6379"
         }
     },
