@@ -1,23 +1,16 @@
-import os
 from kobo.settings.dev import *
 
-
-SESSION_COOKIE_NAME = 'sharful'
-SESSION_COOKIE_DOMAIN = '.sharful.com'
+SESSION_COOKIE_NAME = env.str('COMMON_SESSION_COOKIE_NAME')
+SESSION_COOKIE_DOMAIN = env.str('COMMON_SESSION_COOKIE_DOMAIN')
 
 # INSTALLED_APPS += ('kobo.apps.desk',)
 
 INSTALLED_APPS += ('kobo.apps.bahis.utils',)
 ROOT_URLCONF = 'kobo.settings.bahis.urls'
 
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
-    "http://kf.sharful.com:3001",
-    'http://localhost:5173',
-]
-
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
+CSRF_TRUSTED_ORIGINS += env.list("CSRF_TRUSTED_ORIGINS")
 
 
 # OAUTH2_PROVIDER = {

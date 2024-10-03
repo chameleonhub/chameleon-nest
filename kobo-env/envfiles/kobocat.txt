@@ -1,11 +1,13 @@
 KOBOCAT_DJANGO_DEBUG=True
+DJANGO_DEBUG=True
 TEMPLATE_DEBUG=True
 USE_X_FORWARDED_HOST=False
+DEBUG_TOOLBAR=True
 
 DJANGO_SETTINGS_MODULE=onadata.settings.dev
 ENKETO_VERSION=Express
 
-KOBOCAT_BROKER_URL=redis://:kobo@redis-main.kobo.private:6379/2
+KOBOCAT_BROKER_URL=redis://:kobo@redis-main.sharful.com:6379/2
 KOBOCAT_CELERY_LOG_FILE=/srv/logs/celery.log
 
 #ENKETO_OFFLINE_SURVEYS=True
