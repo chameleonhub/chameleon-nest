@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  maintenance:
+    environment:
+      - ETA=2 hours
+      - DATE_STR=
+      - DATE_ISO=
+      - EMAIL=support@sharful.com
+    ports:
+      - "80:80"
+    networks:
+      kobo-fe-network:
+        aliases:
+          - nginx
+          - nginx.internal
+
+networks:
+  kobo-fe-network:
+    name: kobofe_kobo-fe-network

@@ -4,65 +4,47 @@ version: '2.2'
 services:
 
   postgres:
+    volumes:
+      - ../kobo-env/postgres/primary/postgres.conf:/kobo-docker-scripts/primary/postgres.conf
     #environment:
     #  - POSTGRES_BACKUP_FROM_SECONDARY=True
-    # Uncomment `ports` section if you want to expose ports (e.g. use as separated servers)
-    # Before uncommenting, be sure you have a firewall configured to prevent these ports
-    # from being publicly accessible
     ports:
       - "5434:5432"
-    # Comment out `networks` section below if you want to expose ports
     networks:
       kobo-be-network:
         aliases:
-          - postgres.sharful.com
+          - postgres.sharful.private
 
   mongo:
-    # Uncomment `ports` section if you want to expose ports (e.g. use as separated servers)
-    # Before uncommenting, be sure you have a firewall configured to prevent these ports
-    # from being publicly accessible
     #ports:
     #  - 27017:27017
-    # Comment out section below if you want to expose ports
     networks:
       kobo-be-network:
         aliases:
-          - mongo.sharful.com
+          - mongo.sharful.private
 
-  # Comment out section (`redis_main` and `redis_cache`) below if you want to
-  # start redis containers from the secondary back-end server
   redis_main:
     extends:
       file: docker-compose.backend.template.yml
       service: redis_main
-    # Uncomment `ports` section if you want to expose ports (e.g. use as separated servers)
-    # Before uncommenting, be sure you have a firewall configured to prevent these ports
-    # from being publicly accessible
-    # ports:
-    #   - 6379:6379
-    # Comment out `networks` section below if you want to expose ports
+    #ports:
+    #  - 6379:6379
     networks:
       kobo-be-network:
         aliases:
-          - redis-main.sharful.com
+          - redis-main.sharful.private
 
   redis_cache:
     extends:
       file: docker-compose.backend.template.yml
       service: redis_cache
-    # Uncomment `ports` section if you want to expose ports (e.g. use as separated servers)
-    # Before uncommenting, be sure you have a firewall configured to prevent these ports
-    # from being publicly accessible
-    # ports:
-    #   - 6380:6380
-    # Comment out `networks` section below if you want to expose ports
+    #ports:
+    #  - 6380:6380
     networks:
       kobo-be-network:
         aliases:
-          - redis-cache.sharful.com
-          - redis-cache.kobo.private
+          - redis-cache.sharful.private
 
-# Comment out section below if you want to expose ports
 networks:
   kobo-be-network:
     driver: bridge

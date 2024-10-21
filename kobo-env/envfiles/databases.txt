@@ -1,18 +1,18 @@
 #--------------------------------------------------------------------------------
 # MONGO
 #--------------------------------------------------------------------------------
-# These `KOBO_POSTGRES_` settings only affect the postgres container itself and the
+# These `KOBO_MONGO_` settings only affect the mongo container itself and the
 # `wait_for_mongo.bash` init script that runs within the kpi and kobocat.
 # Please see kobocat.txt to set container variables
 KOBO_MONGO_PORT=27017
-KOBO_MONGO_HOST=mongo.sharful.com
+KOBO_MONGO_HOST=mongo.sharful.private
 MONGO_INITDB_ROOT_USERNAME=root
 MONGO_INITDB_ROOT_PASSWORD=pass
 MONGO_INITDB_DATABASE=formhub
 KOBO_MONGO_USERNAME=kobo
 KOBO_MONGO_PASSWORD=pass
 MONGO_DB_NAME=formhub
-MONGO_DB_URL=mongodb://kobo:kobo@mongo.sharful.com:27017/formhub
+MONGO_DB_URL=mongodb://kobo:pass@mongo.sharful.private:27017/formhub
 
 # Default MongoDB backup schedule is weekly at 01:00 AM UTC on Sunday.
 #MONGO_BACKUP_SCHEDULE=0 1 * * 0
@@ -26,33 +26,38 @@ MONGO_DB_URL=mongodb://kobo:kobo@mongo.sharful.com:27017/formhub
 # containers. To control Django database connections, please see the
 # `DATABASE_URL` environment variable.
 POSTGRES_PORT=5432
-POSTGRES_HOST=postgres.sharful.com
+POSTGRES_HOST=postgres.sharful.private
 POSTGRES_USER=kobo
 POSTGRES_PASSWORD=pass
 KC_POSTGRES_DB=kobocat
 KPI_POSTGRES_DB=koboform
 
 # Postgres database used by kpi and kobocat Django apps
-KC_DATABASE_URL=postgis://kobo:kobo@postgres.sharful.com:5432/kobocat
-KPI_DATABASE_URL=postgis://kobo:kobo@postgres.sharful.com:5432/koboform
+KC_DATABASE_URL=postgis://kobo:pass@postgres.sharful.private:5432/kobocat
+KPI_DATABASE_URL=postgis://kobo:pass@postgres.sharful.private:5432/koboform
 
-# Replication. Password is mandatory
+# Replication
 KOBO_POSTGRES_REPLICATION_USER=kobo_replication
 KOBO_POSTGRES_REPLICATION_PASSWORD=pass
-
-KOBO_POSTGRES_PRIMARY_ENDPOINT=primary.postgres.sharful.com
+KOBO_POSTGRES_PRIMARY_ENDPOINT=primary.postgres.sharful.private
 
 # Default Postgres backup schedule is weekly at 02:00 AM UTC on Sunday.
 #POSTGRES_BACKUP_SCHEDULE=0 2 * * 0
+
+# WAL-E archiving and backup support
+#USE_WAL_E=1
 
 #--------------------------------------------------------------------------------
 # REDIS
 #--------------------------------------------------------------------------------
 
+# Default Redis backup schedule is weekly at 03:00 AM UTC on Sunday.
 #REDIS_BACKUP_SCHEDULE=0 3 * * 0
 
-REDIS_SESSION_URL=redis://:kobo@redis-cache.sharful.com:6380/2
+REDIS_SESSION_URL=redis://:pass@redis-cache.sharful.private:6380/2
+REDIS_LOCK_URL=redis://:pass@redis-cache.sharful.private:6380/3
 REDIS_PASSWORD=pass
-CACHE_URL=redis://:kobo@redis-cache.sharful.com:6380/5
-# In bytes, uncomment to cap Redis Cache memory
-# REDIS_CACHE_MAX_MEMORY=
+CACHE_URL=redis://:pass@redis-cache.sharful.private:6380/5
+REDIS_CACHE_MAX_MEMORY=
+SERVICE_ACCOUNT_BACKEND_URL=redis://:pass@redis-cache.sharful.private:6380/6
+ENKETO_REDIS_MAIN_URL=redis://:pass@redis-main.sharful.private:6379/0

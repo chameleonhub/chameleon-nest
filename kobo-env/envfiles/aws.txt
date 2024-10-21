@@ -5,29 +5,35 @@
 #AWS_ACCESS_KEY_ID=
 #AWS_SECRET_ACCESS_KEY=
 
-
-###################
-# E-mail settings #
-###################
-
-# NOTE: These and the settings from `envfiles/smtp.txt` are mutually exclusive; do not use both.
-# In order to use SES to send e-mails, you must already have SES set up on AWS, and the owner of your `AWS_ACCESS_KEY_ID` must have the appropriate SES permissions.
-#EMAIL_BACKEND=django_ses.SESBackend
-# E.g. `us-east-1`
-#AWS_SES_REGION_NAME=
-# E.g. `email.us-east-1.amazonaws.com`.
-#AWS_SES_REGION_ENDPOINT=
-#DEFAULT_FROM_EMAIL=
-
-
 ####################
 # Storage settings #
 ####################
 
+# To use S3, the specified buckets must already exist and the owner of your `AWS_ACCESS_KEY_ID` must have the appropriate S3 permissions.
+
 #KOBOCAT_DEFAULT_FILE_STORAGE=storages.backends.s3boto3.S3Boto3Storage
-# To use S3 for KoBoCAT's storage, the specified bucket must already exist and the owner of your `AWS_ACCESS_KEY_ID` must have the appropriate S3 permissions.
 #KOBOCAT_AWS_STORAGE_BUCKET_NAME=
 
-# KPI also uses media file storage for users' data exports
 #KPI_DEFAULT_FILE_STORAGE=storages.backends.s3boto3.S3Boto3Storage
 #KPI_AWS_STORAGE_BUCKET_NAME=
+
+#AWS_S3_REGION_NAME=us-east-1
+
+###################
+# Backup settings #
+###################
+
+#BACKUP_AWS_STORAGE_BUCKET_NAME=
+#Backups files deletion is handled by bucket rules when True
+#AWS_BACKUP_BUCKET_DELETION_RULE_ENABLED=False
+#AWS_BACKUP_YEARLY_RETENTION=2
+#AWS_BACKUP_MONTHLY_RETENTION=12
+#AWS_BACKUP_WEEKLY_RETENTION=4
+#AWS_BACKUP_DAILY_RETENTION=30
+
+# In MB
+#AWS_MONGO_BACKUP_MINIMUM_SIZE=50
+#AWS_POSTGRES_BACKUP_MINIMUM_SIZE=50
+#AWS_REDIS_BACKUP_MINIMUM_SIZE=5
+#AWS_BACKUP_UPLOAD_CHUNK_SIZE=15
+
