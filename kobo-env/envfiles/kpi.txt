@@ -6,7 +6,7 @@ USE_X_FORWARDED_HOST=False
 DJANGO_SESSION_COOKIE_AGE=604800
 ENKETO_VERSION=Express
 KPI_PREFIX=/
-KPI_BROKER_URL=redis://:pass@redis-main.sharful.private:6379/1
+KPI_BROKER_URL=redis://:kobo@redis-main.sharful.private:6379/1
 
 # Comma separated domains
 SERVICE_ACCOUNT_WHITELISTED_HOSTS=kf.sharful.internal
