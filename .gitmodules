@@ -1,15 +1,21 @@
-[submodule "dash/bahis-dash"]
-	path = dash/bahis-dash
-	url = git@github.com:road86/bahis-dash.git
+[submodule "kobo-docker"]
+	path = kobo-docker
+	url = https://github.com/kobotoolbox/kobo-docker.git
 [submodule "dash/bahis-data"]
 	path = dash/bahis-data
 	url = git@github.com:road86/bahis-data.git
+[submodule "dash/bahis-dash"]
+	path = dash/bahis-dash
+	url = git@github.com:road86/bahis-dash.git
+[submodule "dash/bahis-dash-ulo"]
+	path = dash/bahis-dash-ulo
+	url = git@github.com:road86/bahis-dash-ulo.git
 [submodule "auth/bahis-oidc"]
 	path = auth/bahis-oidc
 	url = git@github.com:road86/bahis-oidc.git
-[submodule "serve/bahis-serve"]
-	path = serve/bahis-serve
-	url = git@github.com:road86/bahis-serve.git
+[submodule "management/bahis-management"]
+	path = management/bahis-management
+	url = git@github.com:road86/bahis-management.git
 [submodule "dash/bahis-dash-ulo"]
 	path = dash/bahis-dash-ulo
 	url = git@github.com:road86/bahis-dash-ulo.git

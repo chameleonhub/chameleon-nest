@@ -1,0 +1,67 @@
+volumes:
+  production_postgres_data: { }
+  production_django_media: { }
+
+services:
+  management:
+    restart: always
+    build:
+      context: ./bahis-management/
+    image: bahis_management_production_django
+    volumes:
+      - ./bahis-management/bahis_management:/app/bahis_management
+      - production_django_media:/app/bahis_management/media
+    depends_on:
+      - postgres
+      # - redis
+    env_file:
+      - ./bahis-management/.env
+    networks:
+      - manager_net
+      - kobo-docker_kobo-be-network
+      - kobo-docker_kobo-fe-network
+    command: /start.sh
+
+  postgres:
+    restart: always
+    image: postgres:15-alpine3.18
+    ports:
+      - 5433:5432
+    env_file:
+      - ./bahis-management/.env
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - production_postgres_data:/var/lib/postgresql/data
+    networks:
+      - manager_net
+      - kobo-docker_kobo-be-network
+      - kobo-docker_kobo-fe-network
+    command: postgres -c log_statement=all -c log_connections=on
+
+  # redis:
+  #   image: redis:6
+
+  nginx:
+    restart: always
+    image: nginx:mainline-alpine-slim
+    ports:
+      - 3000:80
+    depends_on:
+      - management
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d:ro
+      - production_django_media:/usr/share/nginx/media:ro
+    networks:
+      - manager_net
+      - kobo-docker_kobo-be-network
+      - kobo-docker_kobo-fe-network
+
+networks:
+  manager_net:
+    name: manager_net
+    driver: bridge
+  kobo-docker_kobo-be-network:
+    external: true
+  kobo-docker_kobo-fe-network:
+    external: true

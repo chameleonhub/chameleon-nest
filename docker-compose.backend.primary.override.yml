@@ -1,0 +1,50 @@
+# Override for primary back-end server
+version: '2.2'
+
+services:
+
+  postgres:
+    volumes:
+      - ../kobo-env/postgres/primary/postgres.conf:/kobo-docker-scripts/primary/postgres.conf
+    #environment:
+    #  - POSTGRES_BACKUP_FROM_SECONDARY=True
+    ports:
+      - "5434:5432"
+    networks:
+      kobo-be-network:
+        aliases:
+          - postgres.sharful.private
+
+  mongo:
+    #ports:
+    #  - 27017:27017
+    networks:
+      kobo-be-network:
+        aliases:
+          - mongo.sharful.private
+
+  redis_main:
+    extends:
+      file: docker-compose.backend.template.yml
+      service: redis_main
+    #ports:
+    #  - 6379:6379
+    networks:
+      kobo-be-network:
+        aliases:
+          - redis-main.sharful.private
+
+  redis_cache:
+    extends:
+      file: docker-compose.backend.template.yml
+      service: redis_cache
+    #ports:
+    #  - 6380:6380
+    networks:
+      kobo-be-network:
+        aliases:
+          - redis-cache.sharful.private
+
+networks:
+  kobo-be-network:
+    driver: bridge

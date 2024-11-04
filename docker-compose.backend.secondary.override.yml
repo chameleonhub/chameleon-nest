@@ -1,0 +1,26 @@
+version: '2.2'
+
+services:
+  postgres:
+    volumes:
+      - ../kobo-env/postgres/secondary/postgres.conf:/kobo-docker-scripts/secondary/postgres.conf
+    ports:
+      - "5432:5432"
+    #extra_hosts:
+    #  - postgres.sharful.private:119.40.84.205
+    #  - primary.postgres.sharful.private:119.40.84.205
+
+  redis_main:
+    extends:
+      file: docker-compose.backend.template.yml
+      service: redis_main
+    ports:
+      - "6379:6379"
+
+  redis_cache:
+    extends:
+      file: docker-compose.backend.template.yml
+      service: redis_cache
+    ports:
+      - "6380:6380"
+

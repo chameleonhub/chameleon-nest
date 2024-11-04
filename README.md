@@ -1,6 +1,6 @@
 # bahis-infra
 
-BAHIS project infrastructure repository
+BAHIS project infrastrucutre repository
 
 ## Docker
 
@@ -28,27 +28,37 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 Or follow [this](https://docs.docker.com/engine/install/ubuntu/) tutorial.
 
-## BAHIS
+## BAHIS3
 
-1. First you need to clone all the submodules
+From the root of this repository.
 
-```sh
-git submodule update --init --recursive
-```
-
-2. Then spin up the infrastructure you're interested in, e.g.
+### UP
 
 ```sh
-cd bahis-infra/serve/
-sudo docker-compose build
-sudo docker-compose up -d
+docker compose -f kobo-docker/docker-compose.backend.primary.yml -f docker-compose.backend.primary.override.yml up -d && docker compose -f kobo-docker/docker-compose.frontend.yml -f docker-compose.frontend.override.yml up -d
 ```
 
-3. To initialize the database for the first time request an initial db from one of the development teams and run
+### DOWN
 
 ```sh
-cd pgdb
-whichdb=<path-to-your-db>.sql ./resetdb.sh
+docker compose -f kobo-docker/docker-compose.backend.primary.yml -f docker-compose.backend.primary.override.yml down && docker compose -f kobo-docker/docker-compose.frontend.yml -f docker-compose.frontend.override.yml down
 ```
 
-4. Access BAHIS at e.g. [bahis-serve](http://localhost:83)
+### Mega purge of local machine
+
+This is like the big red button - so only use it locally and never on the server.
+
+```sh
+docker system prune --volumes --all --force && docker volume prune --force --filter all=1
+
+```
+
+### /etc/hosts
+
+Don't forget to add the following lines to your /etc/hosts:
+
+```sh
+127.0.0.1 kf.kobo.private
+127.0.0.1 kc.kobo.private
+127.0.0.1 ee.kobo.private
+```

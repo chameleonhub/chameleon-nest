@@ -1,9 +1,8 @@
-.DS_Store
-secrets
-bahis_minimal.sql
-src_bahis
-deployment/pgdb/*sql
-.env
-secret-init_user.sql
-bahis_creds_file.cnf
 .idea/
+*.log
+*.pot
+*.pyc
+__pycache__/
+/kobo-docker/.vols/
+/kobo-docker/backups/
+/kobo-docker/log/
