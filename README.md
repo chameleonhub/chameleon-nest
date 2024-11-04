@@ -1,6 +1,6 @@
 # bahis-infra
 
-BAHIS project infrastrucutre repository
+BAHIS project infrastructure repository
 
 ## Docker
 
@@ -44,7 +44,7 @@ sudo docker-compose build
 sudo docker-compose up -d
 ```
 
-3. To initialise the database for the first time request an initial db from one of the development team and run
+3. To initialize the database for the first time request an initial db from one of the development teams and run
 
 ```sh
 cd pgdb
