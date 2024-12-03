@@ -1,6 +1,6 @@
-# bahis-infra
+# Chameleon Nest
 
-BAHIS project infrastrucutre repository
+Chameleon project infrastructure repository
 
 ## Docker
 
@@ -51,14 +51,4 @@ This is like the big red button - so only use it locally and never on the server
 ```sh
 docker system prune --volumes --all --force && docker volume prune --force --filter all=1
 
-```
-
-### /etc/hosts
-
-Don't forget to add the following lines to your /etc/hosts:
-
-```sh
-127.0.0.1 kf.kobo.private
-127.0.0.1 kc.kobo.private
-127.0.0.1 ee.kobo.private
 ```
