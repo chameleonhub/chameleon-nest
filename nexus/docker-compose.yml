@@ -12,9 +12,6 @@ services:
     volumes:
       - ./chameleon-nexus/bahis_management:/app/bahis_management
       - production_django_media:/app/bahis_management/media
-    depends_on:
-      - postgres
-      # - redis
     env_file:
       - ./chameleon-nexus/.env
     networks:
@@ -22,23 +19,6 @@ services:
       - kobo-docker_kobo-be-network
       - kobo-docker_kobo-fe-network
     command: /start.sh
-
-  postgres:
-    restart: always
-    image: postgres:15-alpine3.18
-    ports:
-      - 5433:5432
-    env_file:
-      - ./bahis-management/.env
-    environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
-    volumes:
-      - production_postgres_data:/var/lib/postgresql/data
-    networks:
-      - manager_net
-      - kobo-docker_kobo-be-network
-      - kobo-docker_kobo-fe-network
-    command: postgres -c log_statement=all -c log_connections=on
 
   nginx:
     container_name: nexusx
