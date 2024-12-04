@@ -3,6 +3,7 @@ version: '3'
 
 services:
   kobocat:
+    container_name: kobocat
     #  build:
     #  image: kobocat:dev.
     #  volumes:
@@ -25,6 +26,7 @@ services:
           - kobocat.docker.container
 
   kpi:
+    container_name: kpi
     #  build:
     #  image: kpi:dev.
     volumes:
@@ -50,6 +52,7 @@ services:
           - kpi.docker.container
 
   nginx:
+    container_name: kobox
     environment:
       - NGINX_PUBLIC_PORT=80
     #  - UWSGI_PASS_TIMEOUT=130

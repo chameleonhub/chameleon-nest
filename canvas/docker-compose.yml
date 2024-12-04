@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  pgdb:
+  dashdb:
     image: postgis/postgis:15-3.4-alpine
     environment:
       - TZ=Asia/Dhaka
@@ -14,48 +14,48 @@ services:
       dashdb
     networks:
       - dash_net
-    command: ["postgres", "-c", "log_statement=all", "-c", "log_connections=on"]
+    command: [ "postgres", "-c", "log_statement=all", "-c", "log_connections=on" ]
 
   dashboard:
-    build: 
-      context: ./bahis-dash/
+    build:
+      context: ./chameleon-canvas/
     container_name: dashboard
     environment:
       - TZ=Asia/Dhaka
     restart: always
     volumes:
-      - ./bahis-data/output/:/home/app/exported_data
+      - ./chameleon-data/output/:/home/app/exported_data
     networks:
       - dash_net
 
   dashboard-ulo:
-    build: 
-      context: ./bahis-dash-ulo/
-    container_name: dashboard-ulo
+    build:
+      context: ./chameleon-canvas-ulo/
+    container_name: dashboard_ulo
     environment:
       - TZ=Asia/Dhaka
     restart: always
     volumes:
-      - ./bahis-data/output/:/home/app/exported_data
+      - ./chameleon-data/output/:/home/app/exported_data
     networks:
       - dash_net
 
-  data:
+  dash-data:
     build:
-      context: ./bahis-data/
-    container_name: dash-data
+      context: ./chameleon-data/
+    container_name: dash_data
     environment:
       - TZ=Asia/Dhaka
     restart: always
     volumes:
-     - ./bahis-data/output/:/home/app/output
-     - /home/bahis/backups/:/home/app/input
+      - ./chameleon-data/output/:/home/app/output
+      - /home/bahis/backups/:/home/app/input
     networks:
       - dash_net
 
   nginx:
     build: ./nginx
-    container_name: dash-nginx
+    container_name: canvasx
     environment:
       - TZ=Asia/Dhaka
     restart: always

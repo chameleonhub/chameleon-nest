@@ -4,6 +4,7 @@ version: '2.2'
 services:
 
   postgres:
+    container_name: chameleon_db
     volumes:
       - ../kobo-env/postgres/primary/postgres.conf:/kobo-docker-scripts/primary/postgres.conf
     #environment:
@@ -16,6 +17,7 @@ services:
           - postgres.sharful.private
 
   mongo:
+    container_name: chameleon_mongo
     #ports:
     #  - 27017:27017
     networks:

@@ -2,6 +2,7 @@ version: '2.2'
 
 services:
   postgres:
+    container_name: chameleon_db
     volumes:
       - ../kobo-env/postgres/secondary/postgres.conf:/kobo-docker-scripts/secondary/postgres.conf
     ports:

@@ -3,19 +3,20 @@ volumes:
   production_django_media: { }
 
 services:
-  management:
+  nexus:
+    container_name: nexus
     restart: always
     build:
-      context: ./bahis-management/
-    image: bahis_management_production_django
+      context: ./chameleon-nexus/
+    image: chameleon_nexus_production_django
     volumes:
-      - ./bahis-management/bahis_management:/app/bahis_management
+      - ./chameleon-nexus/bahis_management:/app/bahis_management
       - production_django_media:/app/bahis_management/media
     depends_on:
       - postgres
       # - redis
     env_file:
-      - ./bahis-management/.env
+      - ./chameleon-nexus/.env
     networks:
       - manager_net
       - kobo-docker_kobo-be-network
@@ -39,16 +40,14 @@ services:
       - kobo-docker_kobo-fe-network
     command: postgres -c log_statement=all -c log_connections=on
 
-  # redis:
-  #   image: redis:6
-
   nginx:
+    container_name: nexusx
     restart: always
     image: nginx:mainline-alpine-slim
     ports:
       - 3000:80
     depends_on:
-      - management
+      - nexus
     volumes:
       - ./nginx/:/etc/nginx/conf.d:ro
       - production_django_media:/usr/share/nginx/media:ro
