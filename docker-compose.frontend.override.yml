@@ -29,8 +29,8 @@ services:
     #  build:
     #  image: kpi:dev.
     volumes:
-      - ../bahis-kobo/kpi/settings/:/srv/src/kpi/kobo/settings/bahis/
-      - ../bahis-kobo/kpi/apps/:/srv/src/kpi/kobo/apps/bahis/
+      - ../chameleon-kobo/kpi/settings/:/srv/src/kpi/kobo/settings/chameleon/
+      - ../chameleon-kobo/kpi/apps/:/srv/src/kpi/kobo/apps/chameleon/
     #    - :/srv/src/kpi
     environment:
       - NGINX_PUBLIC_PORT=80
