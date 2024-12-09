@@ -28,7 +28,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 Or follow [this](https://docs.docker.com/engine/install/ubuntu/) tutorial.
 
-## BAHIS3
+## Chameleon
 
 From the root of this repository.
 
