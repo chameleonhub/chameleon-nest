@@ -1,7 +1,7 @@
 from kobo.settings.prod import *
 
-SESSION_COOKIE_NAME = env.str('COMMON_SESSION_COOKIE_NAME')
-SESSION_COOKIE_DOMAIN = env.str('COMMON_SESSION_COOKIE_DOMAIN')
+SESSION_COOKIE_NAME = env.str('DJANGO_SESSION_COOKIE_NAME')
+SESSION_COOKIE_DOMAIN = env.str('DJANGO_SESSION_COOKIE_DOMAIN')
 
 INSTALLED_APPS += ('kobo.apps.chameleon.utils',)
 ROOT_URLCONF = 'kobo.settings.chameleon.urls'
