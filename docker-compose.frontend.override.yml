@@ -1,5 +1,4 @@
 # For public, HTTPS servers.
-version: '3'
 
 services:
   kobocat:
@@ -66,6 +65,7 @@ services:
           - ee.docker.internal
 
   enketo_express:
+    container_name: enketo
     # `DUMMY_ENV` is only there to avoid extra complex condition to override
     # `enketo_express` section or not. It allows to always this section whatever
     # `USE_EXTRA_HOSTS` and `USE_BACKEND_NETWORK` values are.
