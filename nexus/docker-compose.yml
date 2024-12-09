@@ -1,7 +1,3 @@
-volumes:
-  production_postgres_data: { }
-  production_django_media: { }
-
 services:
   nexus:
     container_name: nexus
@@ -44,3 +40,6 @@ networks:
     external: true
   kobo-docker_kobo-fe-network:
     external: true
+
+volumes:
+  production_django_media: { }
