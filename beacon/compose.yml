@@ -1,0 +1,70 @@
+services:
+  beacon:
+    container_name: beacon
+    restart: unless-stopped
+    build:
+      context: ./chameleon-beacon/
+    image: chameleon_beacon
+    volumes:
+      - ${DATA_LOCATION_ROOT}/media/:/app/media
+      - ${DATA_LOCATION_ROOT}/staticfiles/:/app/staticfiles
+    env_file:
+      - ./chameleon-beacon/.env
+    networks:
+      - beacon_net
+      - manager_net
+      - kobo-docker_kobo-be-network
+      - kobo-docker_kobo-fe-network
+    command: /start.sh
+  geoserver:
+    image: kartoza/geoserver
+    container_name: geoserver
+    restart: unless-stopped
+    ports:
+      - "8020:8080"
+    volumes:
+      #      - ./geoserver/settings/:/settings/
+      #      - ./geoserver/geo_data/workspaces:/opt/geoserver/data_dir/workspaces
+      #      - ./geoserver/geo_data/styles:/opt/geoserver/data_dir/styles
+      - ${DATA_LOCATION_ROOT}/geoserver_data:/opt/geoserver/data_dir
+    environment:
+      - GEOSERVER_ADMIN_PASSWORD=${GEOSERVER_PASSWORD}
+      - GEOSERVER_ADMIN_USER=admin
+      - SAMPLE_DATA=true
+      - USER_WMS_REQUEST=500/s
+    networks:
+      - beacon_net
+
+  nginx:
+    container_name: beaconx
+    restart: unless-stopped
+    image: nginx:mainline-alpine-slim
+    ports:
+      - "5020:80"
+    depends_on:
+      - beacon
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d:ro
+      - ${DATA_LOCATION_ROOT}/media/:/usr/share/nginx/media/
+      - ${DATA_LOCATION_ROOT}/staticfiles/:/usr/share/nginx/staticfiles/
+    networks:
+      - beacon_net
+
+networks:
+  beacon_net:
+    name: beacon_net
+    driver: bridge
+  manager_net:
+    external: true
+  kobo-docker_kobo-be-network:
+    external: true
+  kobo-docker_kobo-fe-network:
+    external: true
+
+volumes:
+  beacon_media:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /chameleon/chameleon-nest/kobo-docker/.vols/beacon_media

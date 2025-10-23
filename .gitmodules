@@ -13,3 +13,6 @@
 [submodule "canvas/chameleon-data"]
 	path = canvas/chameleon-data
 	url = git@github.com:chameleonhub/chameleon-data.git
+[submodule "beacon/chameleon-beacon"]
+	path = beacon/chameleon-beacon
+	url = git@github.com:chameleonhub/chameleon-beacon.git

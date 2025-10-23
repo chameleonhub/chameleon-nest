@@ -3,6 +3,7 @@
 *.pot
 *.pyc
 __pycache__/
-/kobo-docker/.vols/
+/kobo-docker/.vols*/
 /kobo-docker/backups/
 /kobo-docker/log/
+.env*
