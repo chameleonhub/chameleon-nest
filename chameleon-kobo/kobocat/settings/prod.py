@@ -1,0 +1,6 @@
+from onadata.settings.dev import *
+
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = env.list("DJANGO_CORS_ALLOWED_ORIGINS")
+# CSRF_TRUSTED_ORIGINS += env.list("DJANGO_CSRF_TRUSTED_ORIGINS")
