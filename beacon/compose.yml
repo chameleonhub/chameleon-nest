@@ -21,6 +21,8 @@ services:
     image: kartoza/geoserver
     container_name: geoserver
     restart: unless-stopped
+    env_file:
+      - ./geoserver/.env.docker
     ports:
       - "8020:8080"
     volumes:
