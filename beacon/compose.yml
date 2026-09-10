@@ -10,6 +10,7 @@ services:
       - ${DATA_LOCATION_ROOT}/staticfiles/:/app/staticfiles
     env_file:
       - ./chameleon-beacon/.env
+      - ./chameleon-beacon/.env.docker
     networks:
       - beacon_net
       - manager_net
